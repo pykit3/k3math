@@ -3,7 +3,7 @@ k3math is a toy math impl
 """
 
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __name__ = "k3math"
 
 from .mth import Matrix
