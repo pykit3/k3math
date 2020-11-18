@@ -4,20 +4,20 @@ ys = [6, 5, 7, 10]
 # Fit polynomial curve with 4 points, at degree 0, 1, 2, 3:
 for deg in (0, 1, 2, 3):
     poly = Polynomial.fit(xs, ys, degree=deg)
-    print 'y =', poly
+    print('y =', poly)
 
     # Evaluate y(5) with polynomial
     y5 = Polynomial.evaluate(poly, 5)
-    print 'y(5) =', y5
+    print('y(5) =', y5)
 
     # Plot the curve and points
     lines = Polynomial.plot([(poly, '.')], (-1, 6),
                             width=30, height=10,
-                            points=zip(xs + [5],
+                            points=list(zip(xs + [5],
                                        ys + [y5],
-                                       ['X', 'X', 'X', 'X', '*']))
+                                       ['X', 'X', 'X', 'X', '*'])))
     for l in lines:
-        print l
+        print(l)
 
 # y = 7
 # y(5) = 7.0
