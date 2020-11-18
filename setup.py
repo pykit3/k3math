@@ -1,3 +1,4 @@
+# DO NOT EDIT!!! built with `python _building/build_setup.py`
 import setuptools
 setuptools.setup(
     name="k3math",
