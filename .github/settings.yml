@@ -1,6 +1,6 @@
 _extends: gh-config
 
 repository:
-  description: no desc
+  description: k3math is a toy math impl
   homepage: https://blog.openacid.com
-  topics: tag1, tag2
+  topics: math, python3
