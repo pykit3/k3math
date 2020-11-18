@@ -1,24 +1,3 @@
-# k3math
-
-[![Build Status](https://travis-ci.com/pykit3/k3math.svg?branch=master)](https://travis-ci.com/pykit3/k3math)
-[![Documentation Status](https://readthedocs.org/projects/k3math/badge/?version=stable)](https://k3math.readthedocs.io/en/stable/?badge=stable)
-[![Package](https://img.shields.io/pypi/pyversions/k3math)](https://pypi.org/project/k3math)
-
-no desc
-
-k3math is a component of [pykit3] project: a python3 toolkit set.
-
-
-# Install
-
-```
-pip install k3math
-```
-
-# Synopsis
-
-```python
-
 xs = [1, 2, 3, 4]
 ys = [6, 5, 7, 10]
 
@@ -76,18 +55,3 @@ for deg in (0, 1, 2, 3):
 #    .            ..
 #     .         .X
 #      X....X...
-
-```
-
-#   Author
-
-Zhang Yanpo (张炎泼) <drdr.xp@gmail.com>
-
-#   Copyright and License
-
-The MIT License (MIT)
-
-Copyright (c) 2015 Zhang Yanpo (张炎泼) <drdr.xp@gmail.com>
-
-
-[pykit3]: https://github.com/pykit3
