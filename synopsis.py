@@ -1,3 +1,5 @@
+from k3math import Polynomial
+
 xs = [1, 2, 3, 4]
 ys = [6, 5, 7, 10]
 
@@ -14,8 +16,8 @@ for deg in (0, 1, 2, 3):
     lines = Polynomial.plot([(poly, '.')], (-1, 6),
                             width=30, height=10,
                             points=list(zip(xs + [5],
-                                       ys + [y5],
-                                       ['X', 'X', 'X', 'X', '*'])))
+                                            ys + [y5],
+                                            ['X', 'X', 'X', 'X', '*'])))
     for l in lines:
         print(l)
 

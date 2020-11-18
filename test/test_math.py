@@ -2,9 +2,9 @@
 # coding: utf-8
 
 import unittest
-import math
 
 import k3ut
+
 from k3math import Matrix
 from k3math import Polynomial
 from k3math import Vector
@@ -136,20 +136,20 @@ class TestPolynomial(unittest.TestCase):
         lines = []
         for deg in (0, 1, 2, 3):
             poly = Polynomial.fit(xs, ys, degree=deg)
-            print ('y =', poly)
+            print('y =', poly)
             y5 = Polynomial.evaluate(poly, 5)
-            print ('y(5) =', y5)
+            print('y(5) =', y5)
 
             p1 = Polynomial.fit(xs, ys, degree=1)
             for l in Polynomial.plot([(p1, '.'), (poly, 'o'), ],
                                      (0, 6),
                                      width=60, height=12, points=list(zip(xs + [5], ys + [y5]))):
-                print (l)
+                print(l)
 
             lines += Polynomial.plot(
-                    [(p1, '.'), (poly, 'o'), ],
-                    (0, 6),
-                    width=60, height=12, points=list(zip(xs + [5], ys + [y5])))
+                [(p1, '.'), (poly, 'o'), ],
+                (0, 6),
+                width=60, height=12, points=list(zip(xs + [5], ys + [y5])))
 
         want = '''
                                                            .
