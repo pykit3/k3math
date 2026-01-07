@@ -1,10 +1,6 @@
-"""
-k3math is a toy math impl
-"""
+from importlib.metadata import version
 
-
-__version__ = "0.1.2"
-__name__ = "k3math"
+__version__ = version("k3math")
 
 from .mth import Matrix
 from .mth import Polynomial

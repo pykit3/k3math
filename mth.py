@@ -3,14 +3,14 @@
 
 
 class Vector(list):
-    '''
+    """
     A ``Vector`` is a ``list`` supporting operations:
 
     -   ``+``: vector adds vector
     -   ``-``: vector subtracts vector
     -   ``*``: vector times scalar
     -   ``**``: vector powers scalar
-    '''
+    """
 
     def __init__(self, *args, **kwargs):
         super(Vector, self).__init__(*args, **kwargs)
@@ -30,31 +30,30 @@ class Vector(list):
         return Vector([self[i] ** v for i in range(len(self))])
 
     def inner_product(self, b):
-        '''
+        """
         Calculate inner product of two vector and returns a new Vector.
-        '''
+        """
         return sum([self[i] * b[i] for i in range(len(self))])
 
 
 class Matrix(list):
-
     def __init__(self, vectors):
         vectors = [Vector(x) for x in vectors]
         super(Matrix, self).__init__(vectors)
 
     def minor(self, i, j):
-        '''
+        """
         Make a new matrix without i-th row and j-th column.
-        '''
+        """
         vectors = [Vector(x) for x in self[:i]]
-        vectors += [Vector(x) for x in self[i + 1:]]
+        vectors += [Vector(x) for x in self[i + 1 :]]
         for v in vectors:
             v.pop(j)
 
         return Matrix(vectors)
 
     def determinant(self):
-        '''
+        """
         Calculate determinant of this matrix. E.g.::
 
             | a b | = a*d - b*c
@@ -63,7 +62,7 @@ class Matrix(list):
         Returns:
             float
 
-        '''
+        """
         if len(self) == 1:
             return self[0][0]
 
@@ -83,7 +82,7 @@ class Matrix(list):
             self[i][j] = vec[i]
 
     def solve(self, ys):
-        '''
+        """
         Solve equations::
 
             |a00 a01 a02|   |x0|   |y0|
@@ -96,7 +95,7 @@ class Matrix(list):
         Returns:
             Vector
 
-        '''
+        """
         # Sovle linear equation M x [x] = [y]
         # with Cramer's rule
         xs = []
@@ -126,7 +125,6 @@ class Matrix(list):
 
 
 class Polynomial(list):
-
     """
     It represents a polynomial: ``y = a₀ + a₁ * x¹ + a₂ * x² ..``.
     Where `coefficients = [a₀, a₁, a₂ .. ]`.
@@ -146,7 +144,7 @@ class Polynomial(list):
 
     def __str__(self):
         # TODO test
-        super_num = '⁰¹²³⁴⁵⁶⁷⁸⁹'
+        super_num = "⁰¹²³⁴⁵⁶⁷⁸⁹"
 
         rst = []
         for i, coef in enumerate(self):
@@ -154,13 +152,13 @@ class Polynomial(list):
                 continue
 
             if coef == 1:
-                c = ''
+                c = ""
             elif int(coef) == coef:
                 c = str(int(coef))
             else:
-                c1 = '{:>4f}'.format(coef)
-                c1 = c1.rstrip('0')
-                c2 = '{:>4e}'.format(coef)
+                c1 = "{:>4f}".format(coef)
+                c1 = c1.rstrip("0")
+                c2 = "{:>4e}".format(coef)
                 if len(c1) > len(c2):
                     c = c2
                 else:
@@ -169,14 +167,14 @@ class Polynomial(list):
             if i == 0:
                 rst.append(c)
             elif i == 1:
-                rst.append(c + 'x')
+                rst.append(c + "x")
             else:
                 pw = str(i)
-                pw = ''.join([super_num[int(x)] for x in pw])
-                rst.append(c + 'x' + pw)
+                pw = "".join([super_num[int(x)] for x in pw])
+                rst.append(c + "x" + pw)
 
-        rst = ' + '.join(rst)
-        return rst.replace(' + -', ' - ')
+        rst = " + ".join(rst)
+        return rst.replace(" + -", " - ")
 
     @classmethod
     def get_fitting_equation(clz, xs, ys, degree):
@@ -248,7 +246,7 @@ class Polynomial(list):
 
     @classmethod
     def fit(clz, xs, ys, degree):
-        '''
+        """
         Find a polynomial curve with least squares method.
 
         Args:
@@ -262,7 +260,7 @@ class Polynomial(list):
         Returns:
             Polynomial
 
-        '''
+        """
         xs, ys = Vector(xs), Vector(ys)
 
         m, yys = clz.get_fitting_equation(xs, ys, degree)
@@ -286,7 +284,7 @@ class Polynomial(list):
         # TODO test
         yys = [clz.evaluate(coefficients, x) for x in xs]
         pairs = list(zip(yys, ys))
-        sm = sum([(a - b)**2 for a, b in pairs]) / len(xs)
+        sm = sum([(a - b) ** 2 for a, b in pairs]) / len(xs)
         return sm
 
     @classmethod
@@ -302,7 +300,7 @@ class Polynomial(list):
 
     @classmethod
     def plot(clz, polynomials, rangex, rangey=None, width=120, height=20, points=()):
-        '''
+        """
         Plot a polynomial with text::
 
             poly = [3.5, 3.4, 1]
@@ -346,7 +344,7 @@ class Polynomial(list):
 
         Returns:
             list of strings
-        '''
+        """
 
         # polynomials: is list of coefficients and point symbol
         #
@@ -375,7 +373,7 @@ class Polynomial(list):
 
         lines = []
         for ii in range(height + 1):
-            lines.append([' '] * (width + 1))
+            lines.append([" "] * (width + 1))
 
         for j, y, sym in jys:
             h = y - bot
@@ -395,7 +393,7 @@ class Polynomial(list):
             if len(xyv) > 2:
                 v = str(xyv[2])
             else:
-                v = '(%d,%d)' % (x, y)
+                v = "(%d,%d)" % (x, y)
             h = y - bot
             i = h * height / (top - bot)
             i = int(i)
@@ -411,5 +409,5 @@ class Polynomial(list):
                     lines[i][m] = txt[m - j]
                     m += 1
 
-        lines = [''.join(xx) for xx in lines]
+        lines = ["".join(xx) for xx in lines]
         return lines
