@@ -1,6 +1,6 @@
 # k3math
 
-[![Build Status](https://travis-ci.com/pykit3/k3math.svg?branch=master)](https://travis-ci.com/pykit3/k3math)
+[![Build Status](https://github.com/pykit3/k3math/actions/workflows/python-package.yml/badge.svg)](https://github.com/pykit3/k3math/actions/workflows/python-package.yml)
 [![Documentation Status](https://readthedocs.org/projects/k3math/badge/?version=stable)](https://k3math.readthedocs.io/en/stable/?badge=stable)
 [![Package](https://img.shields.io/pypi/pyversions/k3math)](https://pypi.org/project/k3math)
 
