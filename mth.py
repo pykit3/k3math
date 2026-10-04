@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-
 class Vector(list):
     """
     A ``Vector`` is a ``list`` supporting operations:
@@ -13,7 +9,7 @@ class Vector(list):
     """
 
     def __init__(self, *args, **kwargs):
-        super(Vector, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         for i in range(len(self)):
             self[i] = float(self[i])
 
@@ -39,7 +35,7 @@ class Vector(list):
 class Matrix(list):
     def __init__(self, vectors):
         vectors = [Vector(x) for x in vectors]
-        super(Matrix, self).__init__(vectors)
+        super().__init__(vectors)
 
     def minor(self, i, j):
         """
@@ -156,9 +152,9 @@ class Polynomial(list):
             elif int(coef) == coef:
                 c = str(int(coef))
             else:
-                c1 = "{:>4f}".format(coef)
+                c1 = f"{coef:>4f}"
                 c1 = c1.rstrip("0")
-                c2 = "{:>4e}".format(coef)
+                c2 = f"{coef:>4e}"
                 if len(c1) > len(c2):
                     c = c2
                 else:
@@ -222,7 +218,7 @@ class Polynomial(list):
 
         yys = Vector()
 
-        for deg in range(0, degree + 1):
+        for deg in range(degree + 1):
             # o[i] is coefficient of a[i] of E'a[i]
             o = Vector([0] * (degree + 1))
             y = 0
@@ -393,7 +389,7 @@ class Polynomial(list):
             if len(xyv) > 2:
                 v = str(xyv[2])
             else:
-                v = "(%d,%d)" % (x, y)
+                v = f"({int(x)},{int(y)})"
             h = y - bot
             i = h * height / (top - bot)
             i = int(i)

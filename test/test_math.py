@@ -1,13 +1,8 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 import unittest
 
 import k3ut
 
-from k3math import Matrix
-from k3math import Polynomial
-from k3math import Vector
+from k3math import Matrix, Polynomial, Vector
 
 dd = k3ut.dd
 
