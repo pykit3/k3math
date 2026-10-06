@@ -59,6 +59,9 @@ class Matrix(list):
             float
 
         """
+        if len(self) == 0:
+            return 1
+
         if len(self) == 1:
             return self[0][0]
 
@@ -105,12 +108,11 @@ class Matrix(list):
         return Vector(xs)
 
     def invert(self):
-        # TODO test
         rst = []
         for i in range(len(self)):
             vi = []
             for j in range(len(self)):
-                vi.append(self.minor(j, i).determinant())
+                vi.append((-1) ** (i + j) * self.minor(j, i).determinant())
 
             vi = Vector(vi)
             vi = vi * (1.0 / self.determinant())

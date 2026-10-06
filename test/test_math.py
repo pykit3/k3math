@@ -82,6 +82,17 @@ class TestMatrix(unittest.TestCase):
 
         self.assertEqual(18, a.determinant())
 
+    def test_invert(self):
+        cases = (
+            ([[2]], [[0.5]]),
+            ([[1, 2], [3, 4]], [[-2, 1], [1.5, -0.5]]),
+            ([[1, 2, 3], [0, 1, 4], [5, 6, 0]], [[-24, 18, 5], [20, -15, -4], [-5, 4, 1]]),
+        )
+
+        for m, expected in cases:
+            rst = Matrix(m).invert()
+            self.assertEqual(expected, rst)
+
     def test_replace(self):
         a = Matrix(
             [
