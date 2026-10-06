@@ -56,7 +56,7 @@ class Matrix(list):
             | c d |
 
         Returns:
-            float
+            (float): the determinant.
 
         """
         if len(self) == 0:
@@ -89,10 +89,10 @@ class Matrix(list):
             |a20 a21 a22|   |x2|   |y2|
 
         Args:
-            y(Vector): a vector of `y0, y1, y2`.
+            ys(Vector): a vector of `y0, y1, y2`.
 
         Returns:
-            Vector
+            (Vector): the solution `x0, x1, x2`.
 
         """
         # Sovle linear equation M x [x] = [y]
@@ -256,7 +256,7 @@ class Polynomial(list):
             degree(int): the highest power of variable `x` in the polynomial.
 
         Returns:
-            Polynomial
+            (Polynomial): the fitted polynomial.
 
         """
         xs, ys = Vector(xs), Vector(ys)
@@ -341,7 +341,7 @@ class Polynomial(list):
                 By default it is ``X``.
 
         Returns:
-            list of strings
+            (list[str]): the lines of the plot.
         """
 
         # polynomials: is list of coefficients and point symbol
