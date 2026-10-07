@@ -325,9 +325,9 @@ class Polynomial(list):
                   ([2, 2, 2], '.'), # y = 2 + 2x + 2x^2, plot with "."
                 ]
 
-            rangex(float): is a tuple of two floats that specifies range of x.
+            rangex(tuple): is a tuple of two floats that specifies range of x.
 
-            rangey(float): is a tuple of two floats that specifies range of y.
+            rangey(tuple | None): is a tuple of two floats that specifies range of y.
 
             width(int): specifies plot graph width.
 
