@@ -248,10 +248,9 @@ class Polynomial(list):
         Find a polynomial curve with least squares method.
 
         Args:
+            xs(Vector): Vector of x positions
 
-            x(Vector): Vector of x positions
-
-            y(Vector): Vector of y positions
+            ys(Vector): Vector of y positions
 
             degree(int): the highest power of variable `x` in the polynomial.
 
@@ -320,8 +319,7 @@ class Polynomial(list):
             # ...........
 
         Args:
-
-            polynomials: list of a vector of polynomial coefficients and symbol::
+            polynomials(list): list of a vector of polynomial coefficients and symbol::
 
                 [ ([1, 6], 'x'),    # y = 1 + 6x, plot with "x"
                   ([2, 2, 2], '.'), # y = 2 + 2x + 2x^2, plot with "."
@@ -335,7 +333,7 @@ class Polynomial(list):
 
             height(int): specifies plot graph height.
 
-            points: other points to add to the plot.
+            points(list): other points to add to the plot.
                 It is a vector of ``(x, y[, char])``.
                 ``char`` is optional to specify point mark.
                 By default it is ``X``.
