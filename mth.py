@@ -151,6 +151,8 @@ class Polynomial(list):
 
             if coef == 1 and i > 0:
                 c = ""
+            elif coef == -1 and i > 0:
+                c = "-"
             elif int(coef) == coef:
                 c = str(int(coef))
             else:
