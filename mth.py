@@ -95,7 +95,7 @@ class Matrix(list):
             (Vector): the solution `x0, x1, x2`.
 
         """
-        # Sovle linear equation M x [x] = [y]
+        # Solve linear equation M x [x] = [y]
         # with Cramer's rule
         xs = []
         det = self.determinant()
@@ -133,9 +133,9 @@ class Polynomial(list):
     xs = [1, 2, 3, 4, 5..]
     ys = [1, 2, 4, 7, 11..]
 
-    With xs and ys to calc the coefficients of a polinomial
+    With xs and ys to calc the coefficients of a polynomial
 
-    degree is the highest power of polinomial:
+    degree is the highest power of polynomial:
     degree=2: y = a0 + a1*x + a2*x^2
 
     """
@@ -178,7 +178,7 @@ class Polynomial(list):
     def get_fitting_equation(clz, xs, ys, degree):
         # TODO test
         """
-        Curve fit with least squres
+        Curve fit with least squares
 
         We looking for a curve:
 
@@ -305,7 +305,7 @@ class Polynomial(list):
             for l in Polynomial.plot([(poly, '.')],
                                      rangex=[-1, 6],
                                      width=40, height=10):
-                print l
+                print(l)
             #                                        .
             #                                      ..
             #                                    ..
