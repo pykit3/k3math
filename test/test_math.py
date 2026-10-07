@@ -143,6 +143,18 @@ class TestPolynomial(unittest.TestCase):
         coef = Polynomial.fit(xs, ys, degree=2)
         self.assertEqual([8.5, -3.6, 1], coef)
 
+    def test_str(self):
+        cases = (
+            ([1], "1"),
+            ([1, 2], "1 + 2x"),
+            ([0, 1], "x"),
+            ([1, 1, 1], "1 + x + x²"),
+        )
+
+        for coef, want in cases:
+            got = str(Polynomial(coef))
+            self.assertEqual(want, got, coef)
+
     def test_plot(self):
         # TODO this is a sample
 
