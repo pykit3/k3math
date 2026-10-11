@@ -128,6 +128,7 @@ class Matrix(list):
         return Vector(xs)
 
     def invert(self):
+        det = self.determinant()
         rst = []
         for i in range(len(self)):
             vi = []
@@ -135,7 +136,7 @@ class Matrix(list):
                 vi.append((-1) ** (i + j) * self.minor(j, i).determinant())
 
             vi = Vector(vi)
-            vi = vi * (1.0 / self.determinant())
+            vi = vi * (1.0 / det)
 
             rst.append(vi)
 
