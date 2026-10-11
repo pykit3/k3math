@@ -14,9 +14,11 @@ class Vector(list):
             self[i] = float(self[i])
 
     def __add__(self, b):
+        self._check_len(b)
         return Vector([self[i] + b[i] for i in range(len(self))])
 
     def __sub__(self, b):
+        self._check_len(b)
         return Vector([self[i] - b[i] for i in range(len(self))])
 
     def __mul__(self, v):
@@ -29,7 +31,12 @@ class Vector(list):
         """
         Calculate inner product of two vector and returns a new Vector.
         """
+        self._check_len(b)
         return sum([self[i] * b[i] for i in range(len(self))])
+
+    def _check_len(self, b):
+        if len(b) != len(self):
+            raise ValueError(f"vector lengths differ: {len(self)} and {len(b)}")
 
 
 class Matrix(list):
@@ -58,7 +65,14 @@ class Matrix(list):
         Returns:
             (float): the determinant.
 
+        Raises:
+            ValueError: if this matrix is not square.
+
         """
+        for row in self:
+            if len(row) != len(self):
+                raise ValueError(f"matrix is not square: a row of {len(row)} in {len(self)} rows")
+
         if len(self) == 0:
             return 1
 
@@ -94,7 +108,13 @@ class Matrix(list):
         Returns:
             (Vector): the solution `x0, x1, x2`.
 
+        Raises:
+            ValueError: if this matrix is not square, or `ys` does not have one value per row.
+
         """
+        if len(ys) != len(self):
+            raise ValueError(f"ys has {len(ys)} values for {len(self)} rows")
+
         # Solve linear equation M x [x] = [y]
         # with Cramer's rule
         xs = []
@@ -218,6 +238,9 @@ class Polynomial(list):
         """
 
         xs, ys = Vector(xs), Vector(ys)
+        if len(xs) != len(ys):
+            raise ValueError(f"xs and ys differ in length: {len(xs)} and {len(ys)}")
+
         coef = []
 
         yys = Vector()
@@ -258,6 +281,9 @@ class Polynomial(list):
 
         Returns:
             (Polynomial): the fitted polynomial.
+
+        Raises:
+            ValueError: if `xs` and `ys` differ in length.
 
         """
         xs, ys = Vector(xs), Vector(ys)

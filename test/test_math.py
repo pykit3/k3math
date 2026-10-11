@@ -22,6 +22,15 @@ class TestVector(unittest.TestCase):
         d = a.inner_product([2, 3, 4])
         self.assertEqual(20, d)
 
+    def test_vector_length_mismatch(self):
+        for a, b in (([1], [2, 3]), ([2, 3], [1])):
+            with self.assertRaises(ValueError):
+                Vector(a) + b
+            with self.assertRaises(ValueError):
+                Vector(a) - b
+            with self.assertRaises(ValueError):
+                Vector(a).inner_product(b)
+
     def test_vector_val(self):
         a = Vector([1, 2, 3])
         self.assertEqual([2, 4, 6], a * 2)
@@ -82,6 +91,13 @@ class TestMatrix(unittest.TestCase):
 
         self.assertEqual(18, a.determinant())
 
+    def test_not_square(self):
+        for m in ([[1, 2], [3]], [[1, 2, 9], [3, 4, 9]]):
+            with self.assertRaises(ValueError):
+                Matrix(m).determinant()
+            with self.assertRaises(ValueError):
+                Matrix(m).solve([1, 2])
+
     def test_invert(self):
         cases = (
             ([[2]], [[0.5]]),
@@ -117,6 +133,10 @@ class TestMatrix(unittest.TestCase):
             x = m.solve(y)
             self.assertEqual(expected, x)
 
+    def test_solve_ys_length_mismatch(self):
+        with self.assertRaises(ValueError):
+            Matrix([[3, 5], [1, 2]]).solve([4, 1, 7])
+
 
 class TestPolynomial(unittest.TestCase):
     def test_partial_derivative(self):
@@ -142,6 +162,10 @@ class TestPolynomial(unittest.TestCase):
 
         coef = Polynomial.fit(xs, ys, degree=2)
         self.assertEqual([8.5, -3.6, 1], coef)
+
+    def test_fit_length_mismatch(self):
+        with self.assertRaises(ValueError):
+            Polynomial.fit([1, 2, 3], [1, 2, 3, 100], 1)
 
     def test_str(self):
         cases = (
