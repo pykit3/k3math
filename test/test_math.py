@@ -109,6 +109,30 @@ class TestMatrix(unittest.TestCase):
             rst = Matrix(m).invert()
             self.assertEqual(expected, rst)
 
+    def test_invert_identity(self):
+        # These inverses are not exact floats, so the product is rounded before it is compared to the identity.
+        cases = (
+            [[4, 7], [2, 6]],
+            [[2.5, -1, 0.5], [1, 3, -2], [0.1, 0.2, 4]],
+        )
+
+        for rows in cases:
+            m = Matrix(rows)
+            inv = m.invert()
+            size = len(m)
+            cols = [[inv[k][j] for k in range(size)] for j in range(size)]
+            product = [[round(row.inner_product(col), 9) for col in cols] for row in m]
+            identity = [[float(i == j) for j in range(size)] for i in range(size)]
+            self.assertEqual(identity, product, rows)
+
+    def test_singular(self):
+        for rows in ([[1, 2], [2, 4]], [[1, 2, 3], [4, 5, 6], [7, 8, 9]]):
+            m = Matrix(rows)
+            with self.assertRaises(ZeroDivisionError):
+                m.solve([1] * len(rows))
+            with self.assertRaises(ZeroDivisionError):
+                m.invert()
+
     def test_replace(self):
         a = Matrix(
             [
