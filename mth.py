@@ -342,6 +342,9 @@ class Polynomial(list):
 
         Returns:
             (list[str]): the lines of the plot.
+
+        Raises:
+            ValueError: if `rangex` has zero width.
         """
 
         # polynomials: is list of coefficients and point symbol
@@ -353,6 +356,9 @@ class Polynomial(list):
         # TODO test
         rangex = (float(rangex[0]), float(rangex[1]))
         rng_width = rangex[1] - rangex[0]
+        if rng_width == 0:
+            raise ValueError(f"rangex must not have zero width: {rangex}")
+
         ys = []
         jys = []
         for i in range(width):
@@ -368,6 +374,9 @@ class Polynomial(list):
             y_range = [rangey[0], rangey[1]]
 
         bot, top = min(y_range), max(y_range)
+        if top == bot:
+            # A constant has no height: widen the range to plot it in the middle.
+            bot, top = bot - 1, top + 1
 
         lines = []
         for ii in range(height + 1):

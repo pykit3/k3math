@@ -158,6 +158,16 @@ class TestPolynomial(unittest.TestCase):
             got = str(Polynomial(coef))
             self.assertEqual(want, got, coef)
 
+    def test_plot_constant(self):
+        # A constant has no height, so it is plotted in the middle row.
+        for coef in ([1], [0]):
+            lines = Polynomial.plot([(coef, "*")], (0, 1), width=4, height=2)
+            self.assertEqual(["     ", "**** ", "     "], lines, coef)
+
+    def test_plot_zero_width_rangex(self):
+        with self.assertRaises(ValueError):
+            Polynomial.plot([([0, 1], "*")], (1, 1), points=[(1, 1)])
+
     def test_plot(self):
         # TODO this is a sample
 
