@@ -22,6 +22,15 @@ class TestVector(unittest.TestCase):
         d = a.inner_product([2, 3, 4])
         self.assertEqual(20, d)
 
+    def test_vector_iadd(self):
+        # Vector must not use list.__iadd__, which extends the list instead of adding.
+        a = Vector([1, 2])
+        a += [3, 4]
+        self.assertEqual([4, 6], a)
+
+        with self.assertRaises(ValueError):
+            a += [1]
+
     def test_vector_length_mismatch(self):
         for a, b in (([1], [2, 3]), ([2, 3], [1])):
             with self.assertRaises(ValueError):

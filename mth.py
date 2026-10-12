@@ -17,6 +17,9 @@ class Vector(list):
         self._check_len(b)
         return Vector([self[i] + b[i] for i in range(len(self))])
 
+    def __iadd__(self, b):
+        return self + b
+
     def __sub__(self, b):
         self._check_len(b)
         return Vector([self[i] - b[i] for i in range(len(self))])
